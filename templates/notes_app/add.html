@@ -1,0 +1,16 @@
+{% extends 'core/core.html' %}
+{% load static %}
+{% block title %}Add Notes{% endblock title %}
+
+{% block content %}
+<h2 class="text-center">ADD NOTES</h2>
+<form method="post">
+    {% csrf_token %}
+    <label for="title">Enter title:</label><br>
+    <input type="text" name="title" id="title"><br>
+    <label for="title">Enter description:</label><br>
+    <textarea type="text" name="description" id="description"></textarea><br>
+    <button type="submit" class="btn btn-add">Add</button>
+</form>
+
+{% endblock content %}

@@ -1,0 +1,27 @@
+{% extends 'core/core.html' %}
+{% load static %}
+{% block title %}My Todo App{% endblock title %}
+
+{% block content %}
+    {% if not notes %}
+        <h3>No Notes to show</h3>
+    {% else %}
+        <h3>Notes Added</h3>
+        {% for note in notes %}
+            <div class="note">
+                {% if note.is_completed %}
+                    <del><h2>{{note.title}}</h2></del>
+                    <del><p>{{note.description}}</p></del>
+                {% else %}
+                    <h2>{{note.title}}</h2>
+                    <p>{{note.description}}</p>
+                {% endif %}
+                <span>{{note.date}}</span>
+                <a href="{% url 'edit' id=note.id %}" class="btn btn-edit">Edit</a>
+                <a href="{% url 'delete' id=note.id %}" class="btn btn-delete">Delete</a>
+                <a href="{% url 'mark_complete' id=note.id %}" class="btn btn-danger">Mark As Complete</a>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <a href="{% url 'add' %}" class="btn btn-add">Add Notes</a>
+{% endblock content %}
